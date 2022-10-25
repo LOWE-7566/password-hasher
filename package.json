@@ -1,0 +1,47 @@
+{
+  "name": "@fntools/password-hasher",
+  "version": "0.0.1",
+  "description": "Just encrypt data in JSON format ",
+  "main": "./dist/cjs/index.js",
+  "mudule": "./dist/esm/password.js",
+  "exports" : {
+    "." : {
+      "import" : "./dist/esm/password.js",
+      "require" : "./dist/cjs/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lowecainandaya/password-hasher.git"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "test": "nodemon dist/esm/password.test.js",
+    "test-cjs" : "nodemon /dist/cjs/password.test.js",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "deploy": "npm publish --access public"
+  },
+  "keywords": [
+    "sha-256",
+    "hashing",
+    "password",
+    "crypto"
+  ],
+  "homepage": "https://github.com/lowecainandaya/password-hasher",
+  "author": "Lluie Cain Andaya",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "engineStrict": true,
+  "bugs": {
+    "url": "https://github.com/lowecainandaya/password-hasher/issues"
+  }
+}
