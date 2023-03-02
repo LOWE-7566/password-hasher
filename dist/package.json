@@ -1,10 +1,15 @@
 {
-  "name": "esm",
+  "name": "@fntools/password",
   "version": "0.0.0",
   "description": "Just encrypt data in JSON format ",
-  "main": "../cjs/index.js",
-  "mudule": "./esm/password.js",
-  "type": "module",
+  "main": "./cjs/password.js",
+  "mudule": "./esm/password.mjs",
+  "exports" : {
+    "." : {
+      "import" : "./esm/password.min.js",
+      "require" : "./cjs/password.min.mjs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lowecainandaya/password-hasher.git"
@@ -16,10 +21,8 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "dev": "tsc --watch",
-    "test": "nodemon dist/esm/password.test.js",
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "deploy": "npm publish --access public"
+    "deploy": "npm publish --access public",
+    "test" : "jest" 
   },
   "keywords": [
     "sha-256",
@@ -36,6 +39,6 @@
   },
   "engineStrict": true,
   "bugs": {
-    "url": "https://github.com/lowecainandaya/crypto/issues"
+    "url": "https://github.com/lowecainandaya/password-hasher/issues"
   }
 }
