@@ -4,6 +4,7 @@
   "description": "Just encrypt data in JSON format ",
   "main": "./cjs/password.js",
   "mudule": "./esm/password.mjs",
+  "types" : "./types.d.ts",
   "exports" : {
     "." : {
       "import" : "./esm/password.min.js",
