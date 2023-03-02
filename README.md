@@ -1,26 +1,27 @@
-# PasswordHasher 
+# Fntools/password
 We usually use bcrypt and bcrypt.js in handling passwords but there are some promblems I have encounter which is speed 
-and lightweightness so PasswordHasher is the way to go, it is built using pure javascript and only 1 file with only one dependencies
-PasswordHasher is developed to be a tool for freenet wallet 
+and lightweightness. Fntools/Password has less than 1kb (Minified) therefore it is the way to go if you look for something fast and lightweight, it is built using pure javascript with only one dependency
+Fntools/Password is developed to be a tool for password hashing.
+
 
 
 ### install 
 ### NPM 
 ```bash 
-$ npm i @fntools/password-hasher --save 
+$ npm i @fntools/password --save 
 ```
 ### YARN 
 ```bash 
-$ yarn add @fntools/password-hasher
+$ yarn add @fntools/password
 ```
 
 ### HOW TO INCLUDE IN YOUR PROJECT
 ```javascript 
 // ESM 
-import PasswordHasher from "@fntools/password-hasher";
+import PasswordHasher from "@fntools/password";
 
 // COMMONJS 
-const password-hasher = require("@fntools/password-hasher");
+const password-hasher = require("@fntools/password");
 
 ```
 
@@ -43,18 +44,21 @@ const Hasher = new PasswordHasher(layers:number);
 ### EXAMPLE 
 
 ``` javascript 
-import PasswordHasher from "@fntools/password-hasher";
-  const password = new PasswordHasher(15);
-
+import password from "@fntools/password";
+// OR
+const password = require("@fntools/password");
 // hash 
-password.hash("takataka").then((__hash:any) => {
-  console.log(__hash)})
+test("working as intended", () => {
+password.hash("sample password").then((__hash) => {
+    console.log(__hash);
+});
+password.compare("sample password", "bf5c795f2ec3c33c558da0f83b81afd4e58525b6a8a6f9a3a7360e958f8e2c74").then((result) => {
+    console.log(result);
+});
 
-password.compare("takataka","2b77e37044d70a18be0236d5f57036899447bc5efec1f02409ea5a31d9068342").then((v:any) => {
-  console.log(v);
-} )
 
-// 2b77e37044d70a18be0236d5f57036899447bc5efec1f02409ea5a31d9068342
+
+// bf5c795f2ec3c33c558da0f83b81afd4e58525b6a8a6f9a3a7360e958f8e2c74
 // true
 ```
 

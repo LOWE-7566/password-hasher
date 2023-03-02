@@ -1,7 +1,8 @@
 # Fntools/password
 We usually use bcrypt and bcrypt.js in handling passwords but there are some promblems I have encounter which is speed 
-and lightweightness so PasswordHasher is the way to go, it is built using pure javascript and only 1 file with only one dependencies
-PasswordHasher is developed to be a tool for freenet wallet 
+and lightweightness. Fntools/Password has less than 1kb (Minified) therefore it is the way to go if you look for something fast and lightweight, it is built using pure javascript with only one dependency
+Fntools/Password is developed to be a tool for password hashing.
+
 
 
 ### install 
