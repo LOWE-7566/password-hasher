@@ -1,6 +1,6 @@
 {
   "name": "@fntools/password",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Just encrypt data in JSON format ",
   "main": "./cjs/password.js",
   "mudule": "./esm/password.mjs",

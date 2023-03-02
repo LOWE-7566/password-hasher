@@ -44,9 +44,11 @@ const Hasher = new PasswordHasher(layers:number);
 ### EXAMPLE 
 
 ``` javascript 
-import password from "@fntools/password";
+import PasswordHasher from "@fntools/password";
 // OR
-const password = require("@fntools/password");
+const PasswordHasher = require("@fntools/password");
+
+const password = new PasswordHasher(15) // spicify hkow many times password will be hashed
 // hash 
 
 password.hash("sample password").then((__hash) => {
