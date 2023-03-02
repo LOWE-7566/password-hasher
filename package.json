@@ -1,5 +1,5 @@
 {
-  "name": "@fntools/password-hasher",
+  "name": "@fntools/pass-hasher",
   "version": "0.0.1",
   "description": "Just encrypt data in JSON format ",
   "main": "./dist/cjs/index.js",
