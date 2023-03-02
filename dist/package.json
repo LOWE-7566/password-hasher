@@ -7,8 +7,8 @@
   "types" : "./types.d.ts",
   "exports" : {
     "." : {
-      "import" : "./esm/password.min.js",
-      "require" : "./cjs/password.min.mjs"
+      "import" : "./esm/password.min.mjs",
+      "require" : "./cjs/password.min.js"
     }
   },
   "repository": {

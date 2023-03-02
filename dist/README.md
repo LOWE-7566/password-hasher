@@ -48,7 +48,7 @@ import password from "@fntools/password";
 // OR
 const password = require("@fntools/password");
 // hash 
-test("working as intended", () => {
+
 password.hash("sample password").then((__hash) => {
     console.log(__hash);
 });
