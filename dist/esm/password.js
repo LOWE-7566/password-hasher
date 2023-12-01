@@ -1,7 +1,14 @@
 import crypto from "crypto-js";
-const { stringify } = JSON;
 const sha256 = crypto.SHA256;
+function passwordFromSalt(password, salt) {
+    return sha256(password + salt || "").toString();
+}
 class PasswordHasher {
+    layers;
+    /**
+     * @description Password hasher instance
+     * @param layers is the times a password is going to be hashed
+     */
     constructor(layers) {
         this.layers = layers;
         if (typeof layers !== "number") {
@@ -11,10 +18,15 @@ class PasswordHasher {
             throw new Error("layers must be atleast 1");
         }
     }
-    hash(data) {
+    /**
+      * @description method for hashing password
+      * @param password is the password to be hashed
+      * @param salt an optional secret key
+      * @returns {Promise<string>}
+     */
+    hash(password, salt) {
         return new Promise((r, j) => {
-            var __virtual = data;
-            var __finalHash;
+            var __virtual = passwordFromSalt(password, salt);
             const __layer = this.layers;
             try {
                 for (var i = 0; i <= __layer; i++) {
@@ -33,13 +45,24 @@ class PasswordHasher {
             }
         });
     }
-    compare(data, __hash) {
+    /**
+    * @description a method used to compare if the hash matched the password
+    * @param password is the password to be compared
+    * @param hash is the hash of the password to be compared into
+    * @param salt an optional secret key
+    * @return { Promise<boolean> } if the password match
+     */
+    compare(password, hash, salt) {
         return new Promise((r, j) => {
-            this.hash(data).then((a) => {
-                r(a === __hash);
+            this.hash(password, salt).then((a) => {
+                r(a === hash);
             })
                 .catch((e) => j(e));
         });
     }
 }
+/**
+ * @alias Hasher
+ */
 export default PasswordHasher;
+//# sourceMappingURL=password.js.map

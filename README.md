@@ -1,68 +1,89 @@
-# Fntools/password
-We usually use bcrypt and bcrypt.js in handling passwords but there are some promblems I have encounter which is speed 
-and lightweightness. Fntools/Password has less than 1kb (Minified) therefore it is the way to go if you look for something fast and lightweight, it is built using pure javascript with only one dependency
-Fntools/Password is developed to be a tool for password hashing.
+@fntools/password is a lightweight promise base password hasher alternative to bcrypt and bcrypt.js library
+
+### install
 
 
 
-### install 
-### NPM 
-```bash 
-$ npm i @fntools/password --save 
-```
-### YARN 
-```bash 
+```bash
+# NPM
+$ npm i @fntools/password --save
+
+# YARN
 $ yarn add @fntools/password
 ```
 
+
 ### HOW TO INCLUDE IN YOUR PROJECT
-```javascript 
-// ESM 
+
+```javascript
+// ESM
 import PasswordHasher from "@fntools/password";
 
-// COMMONJS 
-const password-hasher = require("@fntools/password");
+// COMMONJS
+const { PasswordHasher } = require("@fntools/password");
+// or 
+const passwordHasher = require("@fntools/password");
+
+// invoking hasher
+const password = new PasswordHasher(10); // spicify how many times password will be hashed
+// or
+const password = new passwordHasher.Hasher(10); 
 
 ```
 
-### USAGE 
-```javascript 
-const Hasher = new PasswordHasher(layers:number);
-/* layers is the times a password is going to be hashed */
+### API Documentation
 
-// ONLY HAS TWO METHODS 
- [1] Hasher.hash(password);
- /* password => is a string password which is going to return promise  
-    @returns Promise => hash string
-   */
- [2] Hasher.compare(password,hash)
- /* password => a string which is a password 
-   hash => is a hash string from hashing a password 
+```javascript
+new PasswordHasher(layers:number);
+//  @param layers is the times a password is going to be hashed 
+
+// ONLY HAS TWO METHODS
+ [1] Hasher.hash(password:string, salt?:string);
+ /* 
+  * @param password is the password to be hashed
+  * @param salt an optional secret key 
+  * @returns Promise => string
+*/
+ [2] Hasher.compare(password:string, hash:string, salt?:string)
+ /* 
+  * @param password is the password to be compared
+  * @param hash is the hash of the password to be compared into
+  * @param salt an optional secret key  
    @returns Promise => boolean ;
 ```
 
-### EXAMPLE 
 
-``` javascript 
+### Primary Usage
+
+```javascript
 import PasswordHasher from "@fntools/password";
-// OR
-const PasswordHasher = require("@fntools/password");
+const password = new PasswordHasher(10);
 
-const password = new PasswordHasher(15) // spicify hkow many times password will be hashed
-// hash 
-
-password.hash("sample password").then((__hash) => {
-    console.log(__hash);
-});
-password.compare("sample password", "bf5c795f2ec3c33c558da0f83b81afd4e58525b6a8a6f9a3a7360e958f8e2c74").then((result) => {
-    console.log(result);
+// try hashing without salt
+password.hash("sample password").then((hash) => {
+  console.log(hash); // 4993b60183c6a262e1f03d0b8f793e86869c5af82a2b9768d3bd4dd108053bcd
 });
 
+// compare the password
+password.compare("sample password", "4993b60183c6a262e1f03d0b8f793e86869c5af82a2b9768d3bd4dd108053bcd").then((result) => {
+  console.log(result); // true
+});
 
+// try hashing without with salt
+password.hash("sample password", "salt").then((hash) => {
+  console.log(hash); // d3b085d6dece7dd0c3fdcd2c56579e840d253b3bc7c11aa3e0483560671eb778
+});
 
-// bf5c795f2ec3c33c558da0f83b81afd4e58525b6a8a6f9a3a7360e958f8e2c74
-// true
+// compare the password not providing salt 
+password.compare("sample password", "d3b085d6dece7dd0c3fdcd2c56579e840d253b3bc7c11aa3e0483560671eb778").then((result) => {
+  console.log(result); // false // even if the password is correct still return false because no or wrong salt is provided
+});
+
+// compare the password with salt  
+password.compare("sample password", "d3b085d6dece7dd0c3fdcd2c56579e840d253b3bc7c11aa3e0483560671eb778", "salt").then((result) => {
+  console.log(result); // true
+});
+
 ```
 
-### Developed By 
-### [Lowe Andaya](https://github.com/lowecainandaya)
+

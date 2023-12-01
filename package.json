@@ -1,13 +1,12 @@
 {
-  "name": "@fntools/pass-hasher",
-  "version": "0.0.1",
-  "description": "Just encrypt data in JSON format ",
+  "name": "@fntools/password",
+  "version": "1.0.0",
+  "description": "A lightweight promise base password hasher alternative to bcrypt and bcrypt.js library",
   "main": "./dist/cjs/index.js",
-  "mudule": "./dist/esm/password.js",
-  "types" : "./types.d.ts",
+  "types" : "./typings/index.d.ts",
   "exports" : {
     "." : {
-      "import" : "./dist/esm/password.js",
+      "import" : "./dist/esm/index.js",
       "require" : "./dist/cjs/index.js"
     }
   },
@@ -18,14 +17,11 @@
   "dependencies": {
     "crypto-js": "^4.1.1"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  },
   "scripts": {
     "dev": "tsc --watch",
     "test": "nodemon dist/esm/password.test.js",
     "test-cjs" : "nodemon /dist/cjs/password.test.js",
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.json  --target ESNext --outDir ./dist/esm --module es6",
     "deploy": "npm publish --access public"
   },
   "keywords": [
