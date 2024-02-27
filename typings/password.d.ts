@@ -1,28 +1,29 @@
+/**
+ * Lightweight promise-based password hasher alternative to bcrypt.
+ */
 declare class PasswordHasher {
     layers: number;
     /**
-     * @description Password hasher instance
-     * @param layers is the times a password is going to be hashed
+     * Creates an instance of the PasswordHasher.
+     * @param layers The number of times a password is hashed.
+     * @throws Error if layers is not a number or is less than 1.
      */
     constructor(layers: number);
     /**
-      * @description method for hashing password
-      * @param password is the password to be hashed
-      * @param salt an optional secret key
-      * @returns {Promise<string>}
+     * Hashes the given password asynchronously or synchronously.
+     * @param password The password to hash.
+     * @param salt An optional salt.
+     * @returns the hash of the password
      */
-    hash(password: string, salt?: string): Promise<string>;
+    hash(password: string, salt?: string): string;
     /**
-    * @description a method used to compare if the hash matched the password
-    * @param password is the password to be compared
-    * @param hash is the hash of the password to be compared into
-    * @param salt an optional secret key
-    * @return { Promise<boolean> } if the password match
+     * Compares a password with its hash to verify if they match.
+     * @param password The password to be compared.
+     * @param hash The hash of the password to be compared against.
+     * @param salt An optional salt.
+     * @returns True if the password matches the hash.
      */
-    compare(password: string, hash: string, salt?: string): Promise<boolean>;
+    compare(password: string, hash: string, salt?: string): boolean;
 }
-/**
- * @alias Hasher
- */
 export default PasswordHasher;
 //# sourceMappingURL=password.d.ts.map

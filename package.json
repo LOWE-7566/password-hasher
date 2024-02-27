@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "A lightweight promise base password hasher alternative to bcrypt and bcrypt.js library",
   "main": "./dist/cjs/index.js",
-  "types" : "./typings/index.d.ts",
-  "exports" : {
-    "." : {
-      "import" : "./dist/esm/index.js",
-      "require" : "./dist/cjs/index.js"
+  "types": "./typings/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "repository": {
@@ -19,8 +19,7 @@
   },
   "scripts": {
     "dev": "tsc --watch",
-    "test": "nodemon dist/esm/password.test.js",
-    "test-cjs" : "nodemon /dist/cjs/password.test.js",
+    "test": "vitest",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.json  --target ESNext --outDir ./dist/esm --module es6",
     "deploy": "npm publish --access public"
   },
@@ -40,5 +39,9 @@
   "engineStrict": true,
   "bugs": {
     "url": "https://github.com/lowecainandaya/password-hasher/issues"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1"
   }
 }
