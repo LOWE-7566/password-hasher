@@ -1,0 +1,9 @@
+## [1.0.0] - 2024-02-27
+
+
+
+### Changed
+- Included salt in the hashing and comparing to add new layer of security
+
+### Removed 
+- Removed Promises and use syncrounous coding 
